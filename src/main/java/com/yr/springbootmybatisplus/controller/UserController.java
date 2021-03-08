@@ -1,14 +1,11 @@
 package com.yr.springbootmybatisplus.controller;
 
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yr.springbootmybatisplus.entity.User;
-import com.yr.springbootmybatisplus.service.IUserService;
-import org.springframework.ui.ModelMap;
+import com.yr.springbootmybatisplus.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +14,14 @@ import java.util.List;
  * 前端控制器
  * </p>
  *
- * @author linbo
+ * @author pan
  * @since 2020-12-28
  */
 @RestController
 public class UserController {
 
     @Resource
-    private IUserService iUserService;
+    private UserService userService;
 
 
 
@@ -36,7 +33,7 @@ public class UserController {
      */
     @GetMapping("list")
     public List<User> userList() {
-        return iUserService.list();
+        return userService.list();
     }
 
     /**
@@ -55,7 +52,7 @@ public class UserController {
             ) {
                 idlist.add(Integer.valueOf(ID));
             }
-            return iUserService.removeByIds(idlist);
+            return userService.removeByIds(idlist);
         }
             return false;
     }
@@ -69,7 +66,7 @@ public class UserController {
     @PutMapping("update")
     public boolean updateByid(User user) {
 
-        return iUserService.updateById(user);
+        return userService.updateById(user);
 
     }
 
@@ -81,7 +78,7 @@ public class UserController {
      */
     @GetMapping("get/{id}")
     public User getUser(@PathVariable("id") Integer id) {
-        return iUserService.getById(id);
+        return userService.getById(id);
     }
 
 
@@ -93,7 +90,7 @@ public class UserController {
      */
     @PostMapping("save")
     public Integer save(User user) {
-        iUserService.save(user);
+        userService.save(user);
         return user.getId();
     }
 
@@ -104,7 +101,7 @@ public class UserController {
      */
     @PostMapping("deleteAll")
     public boolean deleteAll() {
-        return iUserService.remove(null);
+        return userService.remove(null);
     }
 
 

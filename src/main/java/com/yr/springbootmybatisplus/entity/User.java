@@ -2,6 +2,7 @@ package com.yr.springbootmybatisplus.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -18,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * 
  * </p>
  *
- * @author linbo
+ * @author pan
  * @since 2020-12-28
  */
 @Data
@@ -39,9 +40,10 @@ public class User implements Serializable {
     private String name;
 
     /**
-     * 年龄
+     * 密码
      */
-    private Integer age;
+    private String password;
+
 
     /**
      * 性别
@@ -62,6 +64,7 @@ public class User implements Serializable {
      * 地址
      */
     private String addr;
+
 
     /**
      * 生日
@@ -91,5 +94,9 @@ public class User implements Serializable {
     @TableLogic
     private Integer deleted;
 
+    /**
+     * 权限
+     */
+    private Set<Role> roles;
 
 }

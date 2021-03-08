@@ -8,6 +8,12 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="password" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">密码</label>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <input type="password" min="0" max="120" class="form-control" id="password" placeholder="请输入密码" name="age">
+            </div>
+        </div>
+        <div class="form-group">
             <label for="sex" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">性别</label>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                 <label class="radio-inline">
@@ -16,12 +22,6 @@
                 <label class="radio-inline">
                     <input type="radio" name="sex"  value="男"> 男
                 </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="age" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">年龄</label>
-            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                <input type="number" min="0" max="120" class="form-control" id="age" placeholder="请输入年龄" name="age">
             </div>
         </div>
         <div class="form-group">
@@ -45,12 +45,8 @@
         <div class="form-group">
             <label for="time" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">时间</label>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-               <#-- <input type="text" class="form-control" id="time" placeholder="请选择时间" name="time" readonly onfocus="WdatePicker({isShowWeek:true})">-->
                 <input type="date" class="form-control" id="time" placeholder="请选择时间" name="time" >
             </div>
         </div>
-
-
     </form>
-<#--
-</div>-->
+

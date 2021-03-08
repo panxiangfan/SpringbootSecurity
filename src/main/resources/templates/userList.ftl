@@ -29,8 +29,6 @@
 <script type="text/javascript">
     var result;
     $(function () {
-        // //提示工具js
-        // $('[data-toggle="tooltip"]').tooltip()
 
         //显示添加框 回显框
         $("#addbutton").click(function () {
@@ -140,6 +138,7 @@
             sortable: true,                     //是否启用排序
             sortOrder: "asc",                   //排序方式
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+
             pageNumber: 1,                      //初始化加载第一页，默认第一页,并记录
             pageSize: 10,                     //每页的记录行数（*）
             pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
@@ -175,16 +174,15 @@
                 sortable: true,
                 width: 200
             }, {
+                field: 'password',
+                title: "密码",
+                sortable: true,
+                width: 50
+            }, {
                 field: 'sex',
                 title: '性别',
                 sortable: true,
                 width: 50
-            }, {
-                field: 'age',
-                title: '年龄',
-                sortable: true,
-                width: 50
-                //formatter: linkFormatter
             }, {
                 field: 'addr',
                 title: '地址',
@@ -251,7 +249,7 @@
         $("#addr").val("");
         $("#likes").val("");
         $("#time").val("");
-        $("#age").val("");
+        $("#password").val("");
     }
 
     //操作栏的格式化
@@ -263,28 +261,6 @@
         result += "<a href='javascript:;' class='btn btn-xs btn-danger' onclick=\"deleteById('" + id + "')\" title='删除'><span class='glyphicon glyphicon-remove'></span></a>";
         return result;
     }
-
-
-    /**
-     * 查询
-     * @param current
-     */
-    // function query(current) {
-    //     const size = 10;
-    //     $.ajax({
-    //         url: "page",
-    //         type: "post",
-    //         data: {
-    //             'current': current,
-    //             'size': size
-    //         },
-    //         success: function (data) {
-    //             $(".aaa").empty();
-    //             $(".aaa").append(data);
-    //         }
-    //     });
-    // }
-
 
     /**
      * 删除单个，或者批量删除
@@ -307,7 +283,7 @@
                 $("#id").val(result.id);
                 $("#name").val(result.name);
                 $("#email").val(result.email);
-                $("#age").val(result.age);
+                $("#password").val(result.password);
                 $("input[type='radio'][name='sex'][value='" + result.sex + "']").prop("checked", "checked");
                 $("#addr").val(result.addr);
                 $("#likes").val(result.likes);
@@ -344,7 +320,6 @@
 </script>
 <style type="text/css">
     body {
-        background-color: #9fcdff;
         padding-top: 70px;
         position: relative;
     }
@@ -352,24 +327,32 @@
 <#--inverse-->
 <body data-spy="scroll">
 
-<#include "menu.ftl"/>
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-12  col-xs-12 col-lg-12  ">
-            <#--            <form method="post" action="" id="formId">-->
-            <#--                <input type="hidden" name="current" id="current" value="${page.current?default(1)}">-->
-            <#--            </form>-->
+            <
             <h2 class="sub-header ">用户列表</h2>
             <hr>
             <input type="button" value="新增" id="addbutton" class="btn btn-primary  btn-sm " data-toggle="modal"
                    data-target="#myModal">
             <input type="button" value="删除" id="deleteIds" class="btn btn-danger  btn-sm">
-            <div class="aaa">
-                <#include "list.ftl"/>
-            </div>
+
+<#--            <div class="aaa">-->
+                <div id="testpage" class="table-responsive ">
+                    <table class="table table-hover" id="pagetable" data-reorderable-columns="true">
+                        <thead>
+                        </thead>
+                        <tbody id="databody">
+                        </tbody>
+                    </table>
+                    <div id="page"></div>
+                </div>
+
+<#--                <script type="text/javascript">-->
+<#--                </script>-->
+<#--            </div>-->
         </div>
     </div>
-    <#-- <#include "b.ftl"/>-->
 </div>
 <!-- 修改/添加模态框 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -381,7 +364,7 @@
                 <h4 class="modal-title" id="myModalLabel">用户操作</h4>
             </div>
             <div class="modal-body">
-                <#include "b.ftl"/>
+                <#include "from.ftl"/>
             </div>
             <div class="modal-footer" id="footerDiv">
                 <input type="button" value="Save changes" id="insert" class="btn btn-success btn-sm">
